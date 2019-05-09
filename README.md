@@ -1,4 +1,4 @@
-Color wand ✨ 🍭🧙‍♂️
+Color wand ✨ 🍭🧙‍♂️ [![Build Status](https://travis-ci.com/tio-design/color_wand.svg?branch=feat%2Ftravis)](https://travis-ci.com/tio-design/color_wand)
 =====
 A color library which can be used to create, convert, alter, and compare colors to be used in both Flutter and the web.
 
