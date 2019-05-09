@@ -1,4 +1,4 @@
-Color wand ✨ 🍭
+Color wand ✨ 🍭🧙‍♂️
 =====
 A color library which can be used to create, convert, alter, and compare colors to be used in both Flutter and the web.
 
