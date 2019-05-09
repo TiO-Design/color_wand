@@ -73,4 +73,21 @@ void main() {
       expect(color.isTransparent, false);
     });
   });
+
+  group("Should compare different instances", () {
+    test("of the same color in different color spaces correctly", () {
+      final instance1 = HslColor.fromHslo(
+          hue: 100, saturation: 80, lightness: 50, opacity: 0.5);
+      final instance2 = RgbColor.fromHex(0x5de61980);
+
+      expect(instance1 == instance2, true);
+    });
+    test("of different colors in different color spaces correctly", () {
+      final instance1 = HslColor.fromHslo(
+          hue: 100, saturation: 20, lightness: 50, opacity: 0.5);
+      final instance2 = RgbColor.fromHex(0x5de41980);
+
+      expect(instance1 == instance2, false);
+    });
+  });
 }

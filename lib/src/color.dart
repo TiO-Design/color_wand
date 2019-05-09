@@ -67,4 +67,22 @@ abstract class Color {
 
   /// Returns a new instance with [opacity].
   Color withOpacity(double opacity);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Color &&
+              this.toRgb().value == other.toRgb().value;
+
+  @override
+  int get hashCode => this.toRgb().hashCode;
+
+
+
+  // -----
+  // Other
+  // -----
+
+
+
 }

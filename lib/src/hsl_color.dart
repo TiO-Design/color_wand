@@ -152,21 +152,4 @@ class HslColor extends Color {
           saturation: saturation ?? this.saturation,
           lightness: lightness ?? this.lightness,
           opacity: opacity ?? this.opacity);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is HslColor &&
-          runtimeType == other.runtimeType &&
-          opacity == other.opacity &&
-          hue == other.hue &&
-          saturation == other.saturation &&
-          lightness == other.lightness;
-
-  @override
-  int get hashCode =>
-      opacity.hashCode ^
-      hue.hashCode ^
-      saturation.hashCode ^
-      lightness.hashCode;
 }

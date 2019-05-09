@@ -205,12 +205,5 @@ class RgbColor extends Color {
               opacity: opacity ?? this.opacity);
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is RgbColor &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
   int get hashCode => value.hashCode;
 }
