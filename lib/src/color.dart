@@ -11,6 +11,7 @@ import 'package:meta/meta.dart';
 ///
 /// Take a look at the underlying implementations ([RgbColor] and [HslColor])
 /// for more info on how these values and vectors should look like.
+@immutable
 abstract class Color {
   static const maxOpacity = 1;
 

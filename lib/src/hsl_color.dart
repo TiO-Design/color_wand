@@ -4,6 +4,7 @@ import 'package:color_wand/src/color.dart';
 import 'package:color_wand/src/rgb_color.dart';
 import 'package:meta/meta.dart';
 
+@immutable
 class HslColor extends Color {
   static const minHue = 0;
   static const minSaturation = 0;

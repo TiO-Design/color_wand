@@ -4,7 +4,8 @@ import 'package:color_wand/src/color.dart';
 import 'package:color_wand/src/hsl_color.dart';
 import 'package:meta/meta.dart';
 
-/// A [RgbColor] stored as a 32 bit integer where
+/// A [RgbColor] stored as a 32 bit integer.
+@immutable
 class RgbColor extends Color {
   static const maxAlpha = 255;
 

@@ -2,12 +2,14 @@ import 'package:color_wand/src/color.dart';
 import 'package:color_wand/src/rgb_color.dart';
 import 'package:meta/meta.dart';
 
+@immutable
 abstract class CssColorFormat {
   String format(Color color);
 }
 
 /// Don´t use this directly. Use [RgbFormat], [RgbaFormat] or write your own
 /// child implementation instead.
+@immutable
 class PrefixRgbFormat implements CssColorFormat {
   final OpacityMode opacityMode;
   final PercentOrAlpha rgbStyle;
@@ -48,6 +50,7 @@ class PrefixRgbFormat implements CssColorFormat {
   }
 }
 
+@immutable
 class RgbFormat implements CssColorFormat {
   final PrefixRgbFormat _format;
 
@@ -70,6 +73,7 @@ class RgbFormat implements CssColorFormat {
   String format(Color color) => _format.format(color);
 }
 
+@immutable
 class RgbaFormat implements CssColorFormat {
   final PrefixRgbFormat _format;
 
@@ -94,6 +98,7 @@ class RgbaFormat implements CssColorFormat {
 
 /// Don´t use this directly. Use [HslFormat], [HslaFormat] or write your own
 /// child implementation instead.
+@immutable
 class PrefixHslFormat implements CssColorFormat {
   final OpacityMode opacityMode;
   final DegreeOrDecimal hueStyle;
@@ -128,6 +133,7 @@ class PrefixHslFormat implements CssColorFormat {
   }
 }
 
+@immutable
 class HslFormat implements CssColorFormat {
   final PrefixHslFormat _format;
 
@@ -150,6 +156,7 @@ class HslFormat implements CssColorFormat {
   String format(Color color) => _format.format(color);
 }
 
+@immutable
 class HslaFormat implements CssColorFormat {
   final PrefixHslFormat _format;
 
@@ -172,6 +179,7 @@ class HslaFormat implements CssColorFormat {
   String format(Color color) => _format.format(color);
 }
 
+@immutable
 class HexFormat implements CssColorFormat {
   final bool isUpperCase;
   final OpacityMode opacityMode;
