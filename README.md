@@ -11,13 +11,13 @@ dependencies:
   color: any
 ```
 
-1. Get the package using your IDE's GUI or via command line with
+2. Get the package using your IDE's GUI or via command line with
 
 ```bash
 $ pub get
 ```
 
-1. Import the `color_wand.dart` file in your app
+3. Import the `color_wand.dart` file in your app
 
 ```dart
 import 'package:color_wand/color_wand.dart';
