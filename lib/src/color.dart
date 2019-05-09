@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:color_wand/src/hsl_color.dart';
 import 'package:color_wand/src/rgb_color.dart';
 import 'package:meta/meta.dart';
@@ -59,15 +61,23 @@ abstract class Color {
 
   bool get isTransparent => opacity != maxOpacity;
 
-  /// Calculates the luminance according to https://stackoverflow.com/a/1855903.
-  double get luminance {
+  /// The relative luminance of the color, as specified by
+  /// https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef.
+  ///
+  /// Only valid for opaque colors; use [withBackground] first if necessary.
+  num get _relativeLuminance {
+    double _luminanceChannel(double v) =>
+        (v <= 0.03928) ? v / 12.92 : pow((v + 0.055) / 1.055, 2.4);
+
     final asRgb = toRgb();
-    return (0.299 * asRgb.red + 0.587 * asRgb.green + 0.114 * asRgb.blue) / 255;
+    return _luminanceChannel(asRgb.red / 255) * 0.2126 +
+        _luminanceChannel(asRgb.green / 255) * 0.7152 +
+        _luminanceChannel(asRgb.blue / 255) * 0.0722;
   }
 
-  bool get isDark => luminance <= 0.5;
+  bool get isDark => _relativeLuminance <= 0.72;
 
-  bool get isBright => luminance > 0.5;
+  bool get isBright => _relativeLuminance > 0.72;
 
   // -----
   // Conversion

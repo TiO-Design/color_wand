@@ -120,4 +120,27 @@ void main() {
       expect(instance1 == instance2, false);
     });
   });
+
+  group("Should calculate the relative luminance correctly when", () {
+    test("using the isDark getter on a dark color.",() {
+      final darkColor = Color.hex(0x000000);
+      final isDark = darkColor.isDark;
+      expect(isDark, true);
+    });
+    test("using the isDark getter on a bright color.", () {
+      final brightColor = Color.hex(0xFFFFFF);
+      final isDark = brightColor.isDark;
+      expect(isDark, false);
+    });
+    test("using the isBright getter on a dark color.", () {
+      final darkColor = Color.hex(0x000000);
+      final isBright = darkColor.isBright;
+      expect(isBright, false);
+    });
+    test("using the isBright getter on a bright color.", () {
+      final brightColor = Color.hex(0xFFFFFF);
+      final isBright = brightColor.isBright;
+      expect(isBright, true);
+    });
+  });
 }
