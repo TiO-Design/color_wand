@@ -27,6 +27,8 @@ class PrefixRgbFormat implements CssColorFormat {
         this.opacityStyle = opacityStyle ?? PercentOrFractional.percent;
 
   String format(Color color) {
+    assert(color != null);
+
     final rgbColor = color.toRgb();
     final stringBuffer = StringBuffer();
 
@@ -116,6 +118,8 @@ class PrefixHslFormat implements CssColorFormat {
         this.opacityStyle = opacityStyle ?? PercentOrFractional.percent;
 
   String format(Color color) {
+    assert(color != null);
+
     final hslColor = color.toHsl();
     final stringBuffer = StringBuffer();
 
@@ -194,6 +198,8 @@ class HexFormat implements CssColorFormat {
 
   @override
   String format(Color color) {
+    assert(color != null);
+
     final rgbColor = color.toRgb();
     final rgbHex = (rgbColor.value & 0xFFFFFF).toRadixString(16);
 
