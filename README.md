@@ -29,6 +29,7 @@ Color objects can be constructed by either using the factory constructors of the
 instantiating an `RgbColor` or an `HslColor` using one of their constructors.
 
 - From HEX: `Color.hex(0xRRGGBBAA)`
+- From a HEX string: `Color.parseHex('#RRGGBBAA')`
 - From RGB: `Color.rgb(red: red, green: green, blue: blue)`
 - From RGBA: `Color.rgba(red: red, green: green, blue: blue, alpha: alpha)`
 - From RGBO: `Color.rgbo(red: red, green: green, blue: blue, opacity: opacity)`
@@ -36,7 +37,7 @@ instantiating an `RgbColor` or an `HslColor` using one of their constructors.
 - From HSLO: `Color.hslo(hue: hue, saturation: saturation, lightnesss: lightness, opacity: opacity)`
 - From the lower 32 bits of an integer to be used e.g. for fast conversion to and from the Flutter color lib: `RgbColor(value)`
 
-Colors are immutable, and can be created using const constructors:
+Colors are immutable, and most of them can be created using const constructors:
 ```dart
 Color color = const Color.hex(0x12345678);
 ```
@@ -44,7 +45,6 @@ Color color = const Color.hex(0x12345678);
 Colors can be converted from one color space to another by calling `toRgb` or `toHsl` on them.
 
 Colors can be compared using the `==` operator, which will implicitly convert the color to an `RgbColor` and then compare there values.
-
 
 Colors can be converted to a CSS color string by using one of the different implementations of the `CssColorFormat` interface.
 
