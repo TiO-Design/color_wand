@@ -3,7 +3,7 @@ version: 0.0.1
 description: A color library which can be used to create, convert, alter, and compare colors to be used in both Flutter and the web.
 authors:
   - Tobias Marschall <tobias.marschall@online.de>
-homepage: https://github.com/TiO-Design/color_wand
+homepage: https://github.com/tio-design/color_wand
 environment:
   sdk: '>=2.0.0-dev.61.0 <3.0.0'
 dev_dependencies:
