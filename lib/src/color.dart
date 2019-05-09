@@ -53,6 +53,16 @@ abstract class Color {
 
   bool get isTransparent => opacity != maxOpacity;
 
+  /// Calculates the luminance according to https://stackoverflow.com/a/1855903.
+  double get luminance {
+    final asRgb = toRgb();
+    return (0.299 * asRgb.red + 0.587 * asRgb.green + 0.114 * asRgb.blue) / 255;
+  }
+
+  bool get isDark => luminance <= 0.5;
+
+  bool get isBright => luminance > 0.5;
+
   // -----
   // Conversion
   // -----
@@ -71,18 +81,8 @@ abstract class Color {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Color &&
-              this.toRgb().value == other.toRgb().value;
+      other is Color && this.toRgb().value == other.toRgb().value;
 
   @override
   int get hashCode => this.toRgb().hashCode;
-
-
-
-  // -----
-  // Other
-  // -----
-
-
-
 }
