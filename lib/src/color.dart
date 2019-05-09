@@ -47,6 +47,12 @@ abstract class Color {
       @required num lightness,
       num opacity}) = HslColor.fromHslo;
 
+  static Color parseHex(String hex) {
+    final withoutHash = hex.replaceAll('#', '');
+    final value = int.parse(withoutHash, radix: 16);
+    return RgbColor.fromHex(value);
+  }
+
   num get opacity;
 
   bool get isOpaque => opacity == maxOpacity;

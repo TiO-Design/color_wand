@@ -45,7 +45,8 @@ void main() {
       expect(hslColor.lightness, 12);
     });
     test("when using the Color.hslo factory.", () {
-      final color = Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 0.5);
+      final color =
+          Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 0.5);
       final hslColor = color.toHsl();
       expect(color, TypeMatcher<HslColor>());
       expect(hslColor.hue, 10);
@@ -53,23 +54,52 @@ void main() {
       expect(hslColor.lightness, 12);
       expect(hslColor.opacity, 0.5);
     });
+    test("when using the parseHex function with 8 bytes supplied.", () {
+      final color = Color.parseHex('#12345678').toRgb();
+      expect(color.value, 0x78123456);
+    });
+    test("when using the parseHex function with only 6 bytes supplied.", () {
+      final color = Color.parseHex('#345678').toRgb();
+      expect(color.value, 0xFF345678);
+    });
+    test("when using the parseHex function withouth a hash prefix.", () {
+      final color = Color.parseHex('12345678').toRgb();
+      expect(color.value, 0x78123456);
+    });
+    test(
+        "with the value brought into range when using the parseHex function with a hex longer than 8 bytes supplied.",
+        () {
+      final color = Color.parseHex('#9A34567812').toRgb();
+      expect(color.value, 0x12345678);
+    });
+  });
+
+  group("Should throw an error when constructing a color", () {
+    test("using the parseHex function with an invalid hext string", () {
+      final createInvalidColor = () => Color.parseHex('invalid');
+      expect(createInvalidColor, throwsException);
+    });
   });
 
   group("Should return the correct value when getting the", () {
     test("isOpaque value of a transparent Color.", () {
-      final color = Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 0.5);
+      final color =
+          Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 0.5);
       expect(color.isOpaque, false);
     });
     test("isOpaque value of an opaque Color.", () {
-      final color = Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 1);
+      final color =
+          Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 1);
       expect(color.isOpaque, true);
     });
     test("isTransparent value of a transparent Color.", () {
-      final color = Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 0.5);
+      final color =
+          Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 0.5);
       expect(color.isTransparent, true);
     });
     test("isTransparent value of an opaque Color.", () {
-      final color = Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 1);
+      final color =
+          Color.hslo(hue: 10, saturation: 11, lightness: 12, opacity: 1);
       expect(color.isTransparent, false);
     });
   });

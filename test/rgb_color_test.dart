@@ -23,7 +23,7 @@ void main() {
       expect(color.blue, 120);
     });
     test(
-        "with the value brought into range when using the RgbColor constructor with more thatn 8 bytes supplied.",
+        "with the value brought into range when using the RgbColor constructor with more than 8 bytes supplied.",
         () {
       final color = RgbColor.fromHex(0x9A34567812);
       expect(color.alpha, 18);
