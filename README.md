@@ -1,8 +1,8 @@
-Color wand
+Color wand ✨ 🍭
 =====
-A simple Dart package exposing a Color class which can be used to create, convert, and compare colors.
+A color library which can be used to create, convert, alter, and compare colors to be used in both Flutter and the web.
 
-Installation
+Installation 💻
 -----
 1. Add this to your package's `pubspec.yaml` file:
 
@@ -17,76 +17,50 @@ dependencies:
 $ pub get
 ```
 
-1. Import the `color.dart` file in your app
+1. Import the `color_wand.dart` file in your app
 
 ```dart
-import 'package:color/color.dart';
+import 'package:color_wand/color_wand.dart';
 ```
 
-Usage
+Usage 🥒
 -----
-Color objects can be constructed using any of a few available constructors.
+Color objects can be constructed by either using the factory constructors of the `Color` interface or by directly 
+instantiating an `RgbColor` or an `HslColor` using one of their constructors.
 
-To create a color from rgb values, call
+- From HEX: `Color.hex(0xRRGGBBAA)`
+- From RGB: `Color.rgb(red: red, green: green, blue: blue)`
+- From RGBA: `Color.rgba(red: red, green: green, blue: blue, alpha: alpha)`
+- From RGBO: `Color.rgbo(red: red, green: green, blue: blue, opacity: opacity)`
+- From HSL: `Color.hsl(hue: hue, saturation: saturation, lightness: lightness)`
+- From HSLO: `Color.hslo(hue: hue, saturation: saturation, lightnesss: lightness, opacity: opacity)`
+- From the lower 32 bits of an integer to be used e.g. for fast conversion to and from the Flutter color lib: `RgbColor(value)`
 
+Colors are immutable, and can be created using const constructors:
 ```dart
-Color rgbColor = new Color.rgb(192, 255, 238);
-RgbColor rgbColor = new RgbColor(192, 255, 238);
+Color color = const Color.hex(0x12345678);
 ```
 
-Alternatively, a color can be created directly in a number of other color spaces.
+Colors can be converted from one color space to another by calling `toRgb` or `toHsl` on them.
+
+Colors can be compared using the `==` operator, which will implicitly convert the color to an `RgbColor` and then compare there values.
+
+
+Colors can be converted to a CSS color string by using one of the different implementations of the `CssColorFormat` interface.
+
+Available formats are:
+- `RgbFormat`: `rgb(red, green, blue)` or `rgb(red, green, blue, alpha)`
+- `RgbaFormat`: `rgba(red, green, blue)` or `rgba(red, green, blue, alpha)`
+- `HslFormat`: `hsl(hue, saturation, lightness)` or `hsl(hue, saturation, lightness, alpha)`
+- `HslaFormat`: `hsla(hue, saturation, lightness)` or `hsla(hue, saturation, lightness, alpha)`
+- `HexFormat` `#RRGGBB`or `#RRGGBBAA`
+
+Most of the formats can be customized to e.g. represent the values as percentages or decimal numbers.
 
 ```dart
-RgbColor rgb = new RgbColor(192, 255, 238);
-HexColor hex = new HexColor('c0ffee');
-HslColor hsl = new HslColor(163.8, 100, 87.6);
-XyzColor xyz = new XyzColor(72.931, 88.9, 94.204);
-CielabColor cielab = new CielabColor(95.538, -23.02, 1.732);
-```
-
-Colors are immutable, and can be created using const constructors.
-
-```dart
-RgbColor rgb = const RgbColor(192, 255, 238);
-```
-
-Colors can be created directly from CSS3 color names.
-
-```dart
-RgbColor black = new RgbColor.name('black'); //factory constructor that returns a const RgbColor
-RgbColor white = RgbColor.namedColors['black']; //directly reference the const RgbColor without the factory
-```
-
-Colors implementing the CssColorSpace interface can output a css string representation.
-
-```dart
-RgbColor rgb = new RgbColor(192, 255, 238);
-HexColor hex = new HexColor('c0ffee');
-HslColor hsl = new HslColor(163.8, 100, 87.6);
-assert(rgb is CssColorSpace, true);
-assert(hex is CssColorSpace, true);
-assert(hsl is CssColorSpace, true);
-print(rgb.toCssString()); //rgb(192, 255, 238)
-print(hex.toCssString()); //#c0ffee
-print(hsl.toCssString()); //hsl(163.8, 100.0%, 87.6%)
-```
-
-Colors can be compared using the `==` operator, which will evaluate to true if the two colors share identical rgb values after being rounded to integers.
-
-```dart
-assert(new Color.hex('c0ffee') == new Color.hex('c0ffee'));
-assert(new Color.rgb('192, 255, 238') == new Color.hex('c0ffee'));
-```
-
-Colors can be converted from one color space to another by calling the appropriate `toXXXColor` method on them.
-
-```dart
-HslColor hsl = new RgbColor(192, 255, 238).toHslColor();
-```
-
-Colors can be altered using a ColorFilter, which will return a new color in the same color space as the input color with that filter applied to it.
-
-```dart
-RgbColor grey = ColorFilter.greyscale(new RgbColor(192, 255, 238));
-HslColor sepia = ColorFilter.sepia(new HslColor(163.8, 100, 87.6));
+final rgbFormat = RgbFormat(rgbStyle: PercentOrAlpha.alpha);
+final hslFormat = HslFormat(hueStyle: DegreeOrDecimal.degree);
+final color = Color.hsl(24, 100, 50);
+assert(rgbFormat.format(color) == 'rgb(255, 102, 0)');
+assert(hslFormat.format(color) == 'hsl(24deg, 100%, 50%)');
 ```
