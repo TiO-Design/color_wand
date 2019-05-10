@@ -122,7 +122,7 @@ void main() {
   });
 
   group("Should calculate the relative luminance correctly when", () {
-    test("using the isDark getter on a dark color.",() {
+    test("using the isDark getter on a dark color.", () {
       final darkColor = Color.hex(0x000000);
       final isDark = darkColor.isDark;
       expect(isDark, true);
