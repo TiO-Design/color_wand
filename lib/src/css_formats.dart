@@ -201,7 +201,10 @@ class HexFormat implements CssColorFormat {
     assert(color != null);
 
     final rgbColor = color.toRgb();
-    final rgbHex = (rgbColor.value & 0xFFFFFF).toRadixString(16);
+
+    final rgbHex = rgbColor.value
+        .toRadixString(16)
+        .substring(2); // Alpha digits should be appended.
 
     final stringBuffer = StringBuffer();
     stringBuffer.write("#$rgbHex");
