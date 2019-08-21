@@ -204,6 +204,11 @@ void main() {
       final formatted = HexFormat(opacityMode: OpacityMode.never).format(color);
       expect(formatted, '#AABBCC');
     });
+    test("with red set to 00 when red is 0", () {
+      final color = Color.rgb(red: 0, green: 67, blue: 172);
+      final formatted = HexFormat().format(color);
+      expect(formatted, '#0043AC');
+    });
   });
 
   group("Should convert the provided color to the requried color format", () {
