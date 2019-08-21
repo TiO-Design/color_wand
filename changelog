@@ -9,3 +9,7 @@
 0.0.3
 -----
 * Reformat with dartfmt
+
+0.0.4
+-----
+* Fix issue where HexFormat would cut of the red part of the hex string when red was 0

@@ -1,5 +1,5 @@
 name: color_wand
-version: 0.0.3
+version: 0.0.4
 description: A color library which can be used to create, convert, alter, and compare colors to be used in both Flutter and the web.
 authors:
   - Tobias Marschall <tobias.marschall@online.de>
